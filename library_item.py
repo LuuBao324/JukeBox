@@ -11,5 +11,5 @@ class LibraryItem:
     def stars(self):
         stars = ""
         for i in range(self.rating):
-            stars += "*"
+            stars += "🌟"
         return stars
