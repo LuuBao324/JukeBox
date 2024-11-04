@@ -12,11 +12,11 @@ def load_library(filename):
     with open (filename,'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            key = row['key']
-            name = row['name']
-            artist = row['artist']
-            rating =int(row['rating'])
-            play_count = int(row['play count'])
+            key = row[reader.fieldnames[0]]
+            name = row[reader.fieldnames[1]]
+            artist = row[reader.fieldnames[2]]
+            rating = int(row[reader.fieldnames[3]])
+            play_count = int(row[reader.fieldnames[4]])
             library[key] = LibraryItem(name, artist, rating, play_count )
 
 def save_library(filename):
@@ -39,8 +39,7 @@ def save_library(filename):
             })
 
 #Load library data from CSV file
-
-load_library('songs.csv')
+load_library('D:\COMP1752-OOP\Coursework\jukebox\songs.csv')
 
 
     
@@ -102,4 +101,4 @@ def increment_play_count(key):
         return
     
 #Save the changes to library back to CSV file
-save_library('songs.csv')
+save_library('D:\COMP1752-OOP\Coursework\jukebox\songs.csv')

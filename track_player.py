@@ -21,6 +21,8 @@ def update_tracks_clicked():
     UpdateTracks(tk.Toplevel(window))
 
 
+
+
 window = tk.Tk()
 window.geometry("520x150")
 window.title("JukeBox")
@@ -40,6 +42,7 @@ create_track_list_btn.grid(row=1, column=1, padx=10, pady=10)
 update_tracks_btn = tk.Button(window, text="Update Tracks", command=update_tracks_clicked)
 update_tracks_btn.grid(row=1, column=2, padx=10, pady=10)
 
+play_tracks_btn = tk.Button(window, text="Play Tracks",)
 status_lbl = tk.Label(window, bg='gray', text="", font=("Helvetica", 10))
 status_lbl.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
 

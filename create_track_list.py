@@ -58,7 +58,6 @@ class CreateTrackList():
         
         for track_number in self.playlist:
             lib.increment_play_count(track_number)
-            lib.get_play_count(track_number)
         self.update_playlist_display()
         self.status_lbl.configure(text="Playlist played.")
 

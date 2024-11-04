@@ -4,6 +4,9 @@ import tkinter as tk
 import track_library as lib
 import font_manager as fonts
 
+def set_text(text_area, content):
+    text_area.delete("1.0", tk.END)
+    text_area.insert(1.0, content)
 
 class UpdateTracks():
     def __init__(self, window):
