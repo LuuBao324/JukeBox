@@ -4,6 +4,8 @@ import tkinter.scrolledtext as tkst
 import track_library as lib
 import font_manager as fonts
 
+import os
+
 def set_text(text_area, content):
     text_area.delete("1.0", tk.END)
     text_area.insert(1.0, content)
@@ -58,7 +60,10 @@ class UpdateTracks():
                 track_name = lib.get_name(track_number)
                 play_count = lib.get_play_count(track_number)
                 self.status_lbl.configure(text= f"Track {track_number} ({track_name}) updated with rating {new_rating}, play count: {play_count}")
-                lib.save_library('D:\COMP1752-OOP\Coursework\jukebox\songs.csv') #Save the changes to library back to CSV file
+                
+                current_dir = os.path.dirname(__file__)  # Gets the directory of the script
+                csv_path = os.path.join(current_dir, 'songs.csv')
+                lib.save_library(csv_path) #Save the changes to library back to CSV file
                 track_list = lib.list_all()
                 set_text(self.list_txt, track_list)
             else:

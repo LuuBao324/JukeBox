@@ -1,14 +1,11 @@
 from library_item import LibraryItem
 import csv
+import os
 
 
 library = {}
 def load_library(filename):
-    """Load library data from a CSV file
     
-    Args:
-        filename: songs.csv
-    """
     with open (filename,'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -19,12 +16,9 @@ def load_library(filename):
             play_count = int(row[reader.fieldnames[4]])
             library[key] = LibraryItem(name, artist, rating, play_count )
 
+
 def save_library(filename):
-    """Save library data to a CSV file
     
-    Args:
-            filename: songs.csv
-    """
     with open (filename, 'w', newline='') as csvfile:
         fieldnames = ['key', 'name', 'artist', 'rating', 'play count']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -39,7 +33,10 @@ def save_library(filename):
             })
 
 #Load library data from CSV file
-load_library('D:\COMP1752-OOP\Coursework\jukebox\songs.csv')
+
+current_dir = os.path.dirname(__file__)  # Gets the directory of the script
+csv_path = os.path.join(current_dir, 'songs.csv')
+load_library(csv_path)
 
 
     
