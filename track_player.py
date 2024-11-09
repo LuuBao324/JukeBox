@@ -5,6 +5,7 @@ import font_manager as fonts
 from view_tracks import TrackViewer
 from create_track_list import CreateTrackList
 from update_tracks import UpdateTracks
+from play_track import PlayTrack
 
 
 
@@ -20,11 +21,14 @@ def update_tracks_clicked():
     status_lbl.configure(text= "Update Tracks button clicked!")
     UpdateTracks(tk.Toplevel(window))
 
+def play_tracks_clicked():
+    status_lbl.configure(text="Play Tracks button clicked!")
+    PlayTrack(tk.Toplevel(window))
 
 
 
 window = tk.Tk()
-window.geometry("520x150")
+window.geometry("520x250")
 window.title("JukeBox")
 window.configure(bg="gray")
 
@@ -42,9 +46,10 @@ create_track_list_btn.grid(row=1, column=1, padx=10, pady=10)
 update_tracks_btn = tk.Button(window, text="Update Tracks", command=update_tracks_clicked)
 update_tracks_btn.grid(row=1, column=2, padx=10, pady=10)
 
-play_tracks_btn = tk.Button(window, text="Play Tracks",)
-play_tracks_btn.grid(row=2, column=1, padx=10, pady=10)
+play_tracks_btn = tk.Button(window, text="Play Tracks", command=play_tracks_clicked)
+play_tracks_btn.grid(row=2, column=0, padx=10, pady=10)
+
 status_lbl = tk.Label(window, bg='gray', text="", font=("Helvetica", 10))
-status_lbl.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
+status_lbl.grid(row=3, column=0, columnspan=3, padx=10, pady=10)
 
 window.mainloop()

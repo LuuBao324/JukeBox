@@ -4,7 +4,7 @@ import tkinter.scrolledtext as tkst
 
 import track_library as lib
 import font_manager as fonts
-
+import os
 
 
 class CreateTrackList():
@@ -44,22 +44,24 @@ class CreateTrackList():
         self.status_lbl.grid(row=4, column=0, columnspan=4, sticky="W", padx=10, pady=10)
 
     def add_track(self):
-        track_number = self.track_number_entry.get()
-        track_name = lib.get_name(track_number)
-        if track_name is not None:
-            self.playlist.append(track_name)
+        key = self.track_number_entry.get()
+        name = lib.get_name(key)
+        if name is not None:
+            self.playlist.append(key)
             self.update_playlist_display()
             self.track_number_entry.delete(0, tk.END)
-            self.status_lbl.configure(text=f"Track {track_number} added to playlist.")
+            self.status_lbl.configure(text=f"Track {key} added to playlist.")
         else:
-            self.status_lbl.configure(tk.END, text=f"ERROR, the track number {track_number} not found. \n")
+            self.status_lbl.configure(tk.END, text=f"ERROR, the track number {key} not found. \n")
 
     def play_playlist(self):
-        
-        for track_number in self.playlist:
-            lib.increment_play_count(track_number)
-        self.update_playlist_display()
+        for key in self.playlist:
+            lib.increment_play_count(key)
+            self.update_playlist_display()
         self.status_lbl.configure(text="Playlist played.")
+        current_dir = os.path.dirname(__file__)  # Gets the directory of the script
+        csv_path = os.path.join(current_dir, 'songs.csv')
+        lib.save_library(csv_path) #Save the changes to library back to CSV file
 
     
         
@@ -72,9 +74,11 @@ class CreateTrackList():
 
     def update_playlist_display(self):
         self.playlist_display.delete("1.0", tk.END)
-        for track_number in self.playlist:
-            track_name = lib.get_name(track_number) 
-            self.playlist_display.insert(tk.END, f"{track_number}: {track_name} \n")
+        for key in self.playlist:
+            name = lib.get_name(key) 
+            artist = lib.get_artist(key)
+            play_count = lib.get_play_count(key)
+            self.playlist_display.insert(tk.END, f"{key}: {name} - {artist} (Play Count: {play_count})\n")
 
 if __name__ == "__main__":
     window = tk.Tk()

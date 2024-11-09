@@ -5,7 +5,8 @@ import os
 
 library = {}
 def load_library(filename):
-    
+    global library
+    library = {}   
     with open (filename,'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -14,7 +15,8 @@ def load_library(filename):
             artist = row[reader.fieldnames[2]]
             rating = int(row[reader.fieldnames[3]])
             play_count = int(row[reader.fieldnames[4]])
-            library[key] = LibraryItem(name, artist, rating, play_count )
+            youtube_link = row[reader.fieldnames[5]]
+            library[key] = LibraryItem(name, artist, rating, play_count, youtube_link)
 
 
 def save_library(filename):
@@ -29,7 +31,8 @@ def save_library(filename):
                 'name': item.name,
                 'artist': item.artist,
                 'rating': item.rating,
-                'play count': item.play_count
+                'play count': item.play_count,
+                'youtube link':item.youtube_link
             })
 
 #Load library data from CSV file
@@ -97,4 +100,9 @@ def increment_play_count(key):
     except KeyError:
         return
     
-
+def get_youtube_link(key):
+    try:
+        item = library[key]
+        return item.youtube_link
+    except KeyError:
+        return None

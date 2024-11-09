@@ -51,15 +51,16 @@ class UpdateTracks():
         
     
     def update_track(self):
-        track_number = self.track_number_entry.get()
+        key = self.track_number_entry.get()
         new_rating = self.rating_entry.get()
         try:
             new_rating = int(new_rating)
             if 0 <= new_rating <=5:
-                lib.set_rating(track_number, new_rating)
-                track_name = lib.get_name(track_number)
-                play_count = lib.get_play_count(track_number)
-                self.status_lbl.configure(text= f"Track {track_number} ({track_name}) updated with rating {new_rating}, play count: {play_count}")
+                lib.set_rating(key, new_rating)
+                name = lib.get_name(key)
+                artist = lib.get_artist(key)
+                play_count = lib.get_play_count(key)
+                self.status_lbl.configure(text= f"Track {key} ({name} - {artist}) updated with rating {new_rating}, play count: {play_count}")
                 
                 current_dir = os.path.dirname(__file__)  # Gets the directory of the script
                 csv_path = os.path.join(current_dir, 'songs.csv')
