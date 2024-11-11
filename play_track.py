@@ -5,14 +5,19 @@ import webbrowser
 import font_manager as fonts
 
 
+
 class PlayTrack:
     def __init__(self, window):
         window.geometry('750x350')
         window.title('Play Track List')
 
+        frame = tk.Frame(window)
+        frame.pack(pady=10)
+
         # Create a listbox to display tracks
         self.track_listbox = tk.Listbox(window, width=100)
         self.track_listbox.pack(pady=10)
+
 
         # Populate the listbox with tracks from the library
         self.update_track_list()
@@ -25,6 +30,7 @@ class PlayTrack:
         self.track_listbox.delete(0, tk.END)  # Clear existing entries
         for key, item in lib.library.items():
             self.track_listbox.insert(tk.END, f"{key} - {item.name} - {item.artist}")
+            
 
     def play_selected_track(self):
         selection = self.track_listbox.curselection()
@@ -34,17 +40,12 @@ class PlayTrack:
             key = str(selected_track_text.split(" - ")[0])
             # Open the youtube link in the web browser
             youtube_link = lib.get_youtube_link(key)  # Fetch link using new function
+            youtube_link = str(youtube_link)
 
-            
-
-            # Check if youtube_link is valid and open it
             if youtube_link:
-                youtube_link = str(youtube_link)
-                webbrowser.open_new_tab(youtube_link)
-                
+                webbrowser.open(youtube_link)
             else:
                 messagebox.showerror("Error", "YouTube link not found for this track.")
-            
             self.update_track_list()  # Update the listbox after playing
 
 

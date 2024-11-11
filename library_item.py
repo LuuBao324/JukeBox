@@ -1,5 +1,5 @@
 class LibraryItem:
-    def __init__(self, name, artist, youtube_link, rating=0, play_count=0):
+    def __init__(self, name, artist, rating=0, play_count=0, youtube_link=""):
         self.name = name
         self.artist = artist
         self.rating = rating
