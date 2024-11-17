@@ -47,7 +47,7 @@ update_tracks_btn = tk.Button(window, text="Update Tracks", command=update_track
 update_tracks_btn.grid(row=1, column=2, padx=10, pady=10)
 
 play_tracks_btn = tk.Button(window, text="Play Tracks", command=play_tracks_clicked)
-play_tracks_btn.grid(row=2, column=0, padx=10, pady=10)
+play_tracks_btn.grid(row=2, column=1, padx=10, pady=10)
 
 status_lbl = tk.Label(window, bg='gray', text="", font=("Helvetica", 10))
 status_lbl.grid(row=3, column=0, columnspan=3, padx=10, pady=10)

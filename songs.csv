@@ -1,6 +1,6 @@
 key,name,artist,rating,play count,youtube_link
-01,"Another Brick in the Wall","Pink Floyd",5,0,"https://www.youtube.com/watch?v=HrxX9TBj2zY"
-02,"Stayin' Alive","Bee Gees",3,0,"https://www.youtube.com/watch?v=fNFzfwLM72c"
-03,"Highway to Hell","AC/DC",3,0,"https://www.youtube.com/watch?v=l482T0yNkeo"
-04,"Shape of you","Ed Sheeran",5,0,"https://www.youtube.com/watch?v=JGwWNGJdvx8"
-05,"Someone like you","Adele",3,0,"https://www.youtube.com/watch?v=hLQl3WQQoQ0"
+01,Another Brick in the Wall,Pink Floyd,4,3,https://www.youtube.com/watch?v=HrxX9TBj2zY
+02,Stayin' Alive,Bee Gees,3,3,https://www.youtube.com/watch?v=fNFzfwLM72c
+03,Highway to Hell,AC/DC,3,0,https://www.youtube.com/watch?v=l482T0yNkeo
+04,Shape of you,Ed Sheeran,5,0,https://www.youtube.com/watch?v=JGwWNGJdvx8
+05,Someone like you,Adele,3,0,https://www.youtube.com/watch?v=hLQl3WQQoQ0

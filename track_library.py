@@ -110,7 +110,11 @@ def get_youtube_link(key):
     except KeyError:
         return None
     
-
+def get_track_data(key):
+    try:
+        return library[key]
+    except KeyError:
+        return None
 
 
 

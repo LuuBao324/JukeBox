@@ -6,6 +6,7 @@ import font_manager as fonts
 
 
 
+
 class PlayTrack:
     def __init__(self, window):
         window.geometry('750x350')
