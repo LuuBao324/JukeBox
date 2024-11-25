@@ -39,7 +39,7 @@ def save_library(filename):
 #Load library data from CSV file
 
 current_dir = os.path.dirname(__file__)  # Gets the directory of the script
-csv_path = os.path.join(current_dir, 'songs.csv')
+csv_path = os.path.join(current_dir, 'song_data.csv')
 load_library(csv_path)
 
 
@@ -109,12 +109,8 @@ def get_youtube_link(key):
         return item.youtube_link
     except KeyError:
         return None
-    
-def get_track_data(key):
-    try:
-        return library[key]
-    except KeyError:
-        return None
+
+
 
 
 

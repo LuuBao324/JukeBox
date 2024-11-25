@@ -1,7 +1,6 @@
 import tkinter as tk
 import tkinter.scrolledtext as tkst
 import track_library as lib
-from library_item import LibraryItem
 import font_manager as fonts
 import os
 import json
@@ -66,9 +65,9 @@ class CreateTrackList():
 
     def add_track(self):
         key = self.track_number_entry.get()
-        track_data = lib.get_track_data(key)
-        if track_data is not None:
-            self.playlist.append(track_data)
+        name = lib.get_name(key)
+        if name is not None:
+            self.playlist.append(key)
             self.update_playlist_display()
             self.track_number_entry.delete(0, tk.END)
             self.status_lbl.configure(text=f"Track {key} added to playlist.")
@@ -81,15 +80,13 @@ class CreateTrackList():
             self.update_playlist_display()
         self.status_lbl.configure(text="Playlist played.")
         current_dir = os.path.dirname(__file__)  # Gets the directory of the script
-        csv_path = os.path.join(current_dir, 'songs.csv')
+        csv_path = os.path.join(current_dir, 'song_data.csv')
         lib.save_library(csv_path) #Save the changes to library back to CSV file
 
     def save_playlist(self):
-        try:
-            # Convert LibraryItem objects to dictionaries before saving
-            playlist_data = [vars(item) for item in self.playlist]  
+        try:  
             with open(self.playlist_file, 'w') as f:
-                json.dump(playlist_data, f, indent=4)
+                json.dump(self.playlist, f, indent=4)
             self.status_lbl.configure(text=f"Playlist saved to {self.playlist_file}")
         except Exception as e:
             self.status_lbl.configure(text=f"Error saving playlist: {e}")
@@ -97,9 +94,7 @@ class CreateTrackList():
     def load_playlist(self):
         try:
             with open(self.playlist_file, 'r') as f:
-                loaded_data = json.load(f)
-                # Recreate LibraryItem objects from loaded dictionaries
-                self.playlist = [LibraryItem(**item) for item in loaded_data]
+                self.playlist = json.load(f)
                 self.update_playlist_display()
                 self.status_lbl.configure(text=f"Playlist loaded from {self.playlist_file}")
         except FileNotFoundError:
@@ -117,8 +112,11 @@ class CreateTrackList():
 
     def update_playlist_display(self):
         self.playlist_display.delete("1.0", tk.END)
-        for item in self.playlist: #Iterate through LibraryItem objects
-            self.playlist_display.insert(tk.END, f"{item.name} - {item.artist} (Play Count: {item.play_count})\n")
+        for key in self.playlist:
+            name = lib.get_name(key)
+            artist = lib.get_artist(key)
+            play_count = lib.get_play_count(key)
+            self.playlist_display.insert(tk.END, f"{key}: {name} - {artist} (Play Count: {play_count})\n")
 
 if __name__ == "__main__":
     window = tk.Tk()
