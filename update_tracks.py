@@ -63,7 +63,7 @@ class UpdateTracks():
                 self.status_lbl.configure(text= f"Track {key} ({name} - {artist}) updated with rating {new_rating}, play count: {play_count}")
                 
                 current_dir = os.path.dirname(__file__)  # Gets the directory of the script
-                csv_path = os.path.join(current_dir, 'songs.csv')
+                csv_path = os.path.join(current_dir, 'song_data.csv')
                 lib.save_library(csv_path) #Save the changes to library back to CSV file
                 track_list = lib.list_all()
                 set_text(self.list_txt, track_list)
