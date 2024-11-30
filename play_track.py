@@ -126,6 +126,8 @@ class PlayTrack:
 
         for key in self.current_playlist:
             self.play_track_by_key(key)
+            lib.increment_play_count(key)
+        lib.save_library(os.path.join(self.script_dir, 'song_data.csv'))
 
     def play_track_by_key(self, key):
         """Play a track by its key."""
